@@ -14,7 +14,6 @@
         "build": "node build/build.js"
     },
     "dependencies": {
-        "cos-js-sdk-v5": "^0.4.16",
         "element-ui": "^2.4.7",
         "vue": "^2.5.2",
         "vue-router": "^3.0.1"

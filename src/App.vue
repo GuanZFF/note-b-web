@@ -3,19 +3,13 @@
         <el-container>
             <el-aside width="15%">
                 <el-button id="header">商品循环系统</el-button>
-                <el-menu background-color="#333" text-color="#fff" active-text-color="#814c43">
-                    <el-menu-item index="1">
-                        <i class="el-icon-menu"></i>
-                        <span>商品列表</span>
-                    </el-menu-item>
-                    <el-menu-item index="2">
-                        <i class="el-icon-menu"></i>
-                        <span>用户列表</span>
-                    </el-menu-item>
-                    <el-menu-item index="3">
-                        <i class="el-icon-menu"></i>
-                        <span>系统设置</span>
-                    </el-menu-item>
+                <el-menu background-color="#333" text-color="#fff" active-text-color="#814c43" @select="menuSelect">
+                    <template v-for="item in ViewData.route">
+                        <el-menu-item :key="item.index" :index="item.index">
+                            <i class="el-icon-menu"></i>
+                            <span>{{item.name}}</span>
+                        </el-menu-item>
+                    </template>
                 </el-menu>
             </el-aside>
             <el-container>
@@ -39,10 +33,31 @@
     export default {
         name: 'App',
         data() {
-            const ViewData = {};
-            return ViewData;
+            const route = [
+                {index: 'commodityList', name: '商品列表', link: '/commodityList'},
+                {index: 'insert', name: '插入商品', link: '/insert'},
+                {index: 'recycleCollectorList', name: '收集人列表', link: '/recycleCollectorList'},
+                {index: 'addCollector', name: '添加收集人', link: '/addCollector'},
+                {index: 'commodityTypeList', name: '商品类型列表', link: '/commodityTypeList'},
+                {index: 'addCommodityType', name: '添加商品类型', link: '/addCommodityType'},
+            ];
+            const ViewData = {
+                route: route
+            };
+            return {
+                ViewData: ViewData
+            };
+        },
+        methods: {
+            menuSelect(index) {
+                this.ViewData.route.forEach(item => {
+                    if (item.index === index) {
+                        this.$router.push({path: item.link});
+                    }
+                });
+            }
         }
-    }
+    };
 </script>
 
 <style>
@@ -79,7 +94,7 @@
     }
 
     .el-main {
-        margin: 15px;
+        margin: 15px 15px 0 15px;
         background-color: white;
     }
 
