@@ -1,6 +1,7 @@
 import HTTP from '../lib/http';
+import CONSTANT from '../lib/constant';
 
-const basePath = 'http://localhost:8083';
+const basePath = CONSTANT.DOMAIN_NAME;
 
 export const insertRecycleCommodity = (recycleCommodity) => {
     return HTTP.post(`${basePath}/oss/commodity/insert`, recycleCommodity);
@@ -52,4 +53,14 @@ export const insertCommodityType = (typeInfo) => {
 export const deleteCommodityType = (id) => {
     const data = {id: id};
     return HTTP.get(`${basePath}/oss/common/deleteCommodityType`, data);
-}
+};
+
+export const insertCollector = (collector) => {
+    console.log(collector);
+    return HTTP.post(`${basePath}/oss/collector/insertRecycleCollector`, collector);
+};
+
+export const deleteCollector = (collectorNo) => {
+    const data = {collectorNo: collectorNo};
+    return HTTP.get(`${basePath}/oss/collector/deleteRecycleCollector`, data);
+};

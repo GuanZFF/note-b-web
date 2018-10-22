@@ -203,8 +203,6 @@
             },
             handleDetailRemove(file, fileList) {
                 this.ViewData.params.imgUrl.splice(this.ViewData.params.imgUrl.indexOf(file.response.data), 1);
-                console.log(file);
-                console.log(fileList)
             },
             // 提交插入数据
             createCommodity(commodityInfo) {
