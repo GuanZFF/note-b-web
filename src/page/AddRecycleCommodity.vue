@@ -86,7 +86,7 @@
                 <el-col :span="24">
                     <el-form-item label="商品详情">
                         <el-upload
-                            action="http://localhost:8083/oss/common/upload"
+                            :action=ViewData.loadPath
                             list-type="picture-card"
                             :on-preview="handlePictureCardPreview"
                             :on-success="handleDetailSuccess"
@@ -115,10 +115,11 @@
 <script>
     // import {getAllRecycleCollector, getAllCommodityType} from '../mock/mock-api';
     import {insertRecycleCommodity, getAllRecycleCollector, getAllCommodityType} from '../mock/api';
+    import CONSTANT from '../lib/constant';
 
     export default {
         components: {
-            insertRecycleCommodity, getAllRecycleCollector, getAllCommodityType
+            insertRecycleCommodity, getAllRecycleCollector, getAllCommodityType, CONSTANT
         },
         name: "AddRecycleCommodity",
         data() {
@@ -159,11 +160,12 @@
                         {required: true, message: '请输入备注', trigger: 'blur'}
                     ]
                 },
-                dialogImageUrl: '',         // 需要展示的URL
-                dialogVisible: false,       // 是否要展示
-                collector: [],              // 收集人列表
-                commodityTypes: [],         // 商品类型列表
-                params: params              // 请求参数
+                dialogImageUrl: '',             // 需要展示的URL
+                dialogVisible: false,           // 是否要展示
+                collector: [],                  // 收集人列表
+                commodityTypes: [],             // 商品类型列表
+                params: params,                 // 请求参数
+                loadPath: CONSTANT.UPLOAD_URL   // 上传路径
             };
             return {
                 ViewData: ViewData
