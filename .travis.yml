@@ -1,3 +1,18 @@
 language: node_js
 node_js:
   - "8"
+
+services:
+  - docker
+
+
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: master
+
+install:
+  - docker build -t note-b-web .
+  - docker ps -a
+
