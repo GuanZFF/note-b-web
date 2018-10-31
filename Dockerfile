@@ -1,8 +1,8 @@
 FROM node
 
 RUN echo "----------start---------"
-ADD ./ /data
+#ADD ./ /data
 
-WORKDIR /data
-RUN npm run dev
+#WORKDIR /data
+#RUN npm run dev
 RUN echo "----------end-----------"
