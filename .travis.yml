@@ -6,13 +6,10 @@ services:
   - docker
 
 
-deploy:
-  provider: script
-  script: bash docker_push
-  on:
-    branch: master
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 install:
   - docker build -t note-b-web .
   - docker ps -a
+  - docker push "$DOCKER_USERNAME"/note-b-web
 
