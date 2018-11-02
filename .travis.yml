@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker build -t note-b-web .
   - docker tag note-b-web:latest gzfeng/note-b-web
   - docker push gzfeng/note-b-web:latest
