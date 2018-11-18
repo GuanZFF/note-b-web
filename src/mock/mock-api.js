@@ -303,4 +303,17 @@ export const insertCollector = (RecycleCollector) => {
             }
         });
     })
+};
+
+export const login = (username, password) => {
+    console.log(username, password);
+    return new Promise((resolve) => {
+        resolve({
+            code: 200,
+            msg: 'success',
+            data: {
+                name: 'test'
+            }
+        });
+    })
 }
