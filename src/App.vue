@@ -34,6 +34,7 @@
         name: 'App',
         data() {
             const route = [
+                {index: 'login', name: '登陆', link: '/login'},
                 {index: 'commodityList', name: '商品列表', link: '/commodityList'},
                 {index: 'insert', name: '插入商品', link: '/insert'},
                 {index: 'recycleCollectorList', name: '收集人列表', link: '/recycleCollectorList'},

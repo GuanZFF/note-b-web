@@ -67,8 +67,11 @@ export const deleteCollector = (collectorNo) => {
 
 export const login = (username, password) => {
     const data = {
-        username: username,
-        password: password
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'username=' + username + "&" + "password=" + password
     };
-    return HTTP.post(`${basePath}/recycle/login`, data);
+    return HTTP.fetch(`${basePath}/recycle/login`, data);
 };
