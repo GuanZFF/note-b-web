@@ -63,7 +63,7 @@
                     if (valid) {
                         login(this.VIEW.params.username, this.VIEW.params.password).then(res => {
                             console.log(res);
-                            if (res.code === 200) {
+                            if (res.code === 100001) {
                                 this.$notify.success("登陆成功");
                             } else {
                                 this.$notify.error({title: '错误', message: res.msg});

@@ -62,6 +62,19 @@
             </el-row>
             <el-row>
                 <el-col :span="24">
+                    <el-form-item label="商品成色" prop="damageDegree">
+                        <el-select v-model="ViewData.params.damageDegree" placeholder="请选择商品成色">
+                            <el-option v-for="item in ViewData.damageDegrees"
+                                       :key="item.key"
+                                       :label="item.label"
+                                       :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24">
                     <el-form-item label="备注" prop="remark">
                         <el-input type="textarea" v-model="ViewData.params.remark" placeholder="备注"></el-input>
                     </el-form-item>
@@ -72,7 +85,7 @@
                 <el-col :span="24">
                     <el-form-item label="商品头像">
                         <el-upload
-                            action="http://localhost:8083/oss/common/upload"
+                            :action=ViewData.loadPath
                             list-type="picture-card"
                             :on-preview="handlePictureCardPreview"
                             :on-success="handleSuccess"
@@ -132,13 +145,14 @@
                 recycleTime: '',            // 回收时间
                 recyclePrice: '',           // 回收价格
                 expectSellPrice: '',        // 出售价格
+                damageDegree: '',           // 商品损坏程度
                 remark: '',                 // 备注
             };
             const ViewData = {
                 rules: {
                     commodityName: [
                         {required: true, message: '请输入活动名称', trigger: 'blur'},
-                        {min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur'}
+                        {min: 3, max: 50, message: '长度在 3 到 50 个字符', trigger: 'blur'}
                     ],
                     collectorNo: [
                         {required: true, message: '请选择收集人', trigger: 'change'}
@@ -155,7 +169,9 @@
                     expectSellPrice: [
                         {required: true, message: '请输入期望出售价格', trigger: 'blur'}
                     ],
-
+                    damageDegree: [
+                        {required: true, message: '请选择收集人', trigger: 'change'}
+                    ],
                     remark: [
                         {required: true, message: '请输入备注', trigger: 'blur'}
                     ]
@@ -164,6 +180,13 @@
                 dialogVisible: false,           // 是否要展示
                 collector: [],                  // 收集人列表
                 commodityTypes: [],             // 商品类型列表
+                damageDegrees: [
+                    {'key': 1, 'label': '全新', 'value': 0},
+                    {'key': 2, 'label': '9成新', 'value': 1},
+                    {'key': 3, 'label': '8成新', 'value': 2},
+                    {'key': 4, 'label': '5成新', 'value': 5},
+                    {'key': 5, 'label': '3成新', 'value': 7}
+                    ],                          // 商品损坏程度
                 params: params,                 // 请求参数
                 loadPath: CONSTANT.UPLOAD_URL   // 上传路径
             };
@@ -189,7 +212,6 @@
         },
         methods: {
             handleRemove(file, fileList) {
-                console.log(1);
                 console.log(file, fileList);
             },
             handlePictureCardPreview(file) {
