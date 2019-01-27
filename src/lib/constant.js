@@ -1,4 +1,6 @@
-const DOMAIN_NAME = 'http://www.gzhenfeng.cn:8084';
+// const DOMAIN_NAME = 'http://www.gzhenfeng.cn:8084';
+
+const DOMAIN_NAME = 'http://140.143.201.74:8084';
 // const DOMAIN_NAME = 'http://localhost:8084';
 
 const CONSTANT = {
